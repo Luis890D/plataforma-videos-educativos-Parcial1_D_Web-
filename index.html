@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduVid — Plataforma de Videos Educativos | UMG</title>
+  <meta name="description" content="Plataforma educativa de videos para estudiantes de la Universidad Mariano Gálvez de Guatemala. Aprende Desarrollo Web, Base de Datos y más." />
+  <meta name="keywords" content="videos educativos, UMG, desarrollo web, base de datos, ingeniería" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="main-navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" id="logo-link">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="url(#logoGrad)"/>
+            <path d="M10 8.5L20 14L10 19.5V8.5Z" fill="white"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28">
+                <stop stop-color="#6C63FF"/>
+                <stop offset="1" stop-color="#A855F7"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Edu<span class="logo-accent">Vid</span></span>
+      </a>
+
+      <div class="nav-search-bar" id="nav-search-container">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="nav-search-input" class="search-input" placeholder="Buscar videos..." autocomplete="off" />
+      </div>
+
+      <div class="nav-actions">
+        <!-- Visitante -->
+        <div id="auth-actions-guest" class="auth-actions">
+          <button class="btn btn-ghost" id="btn-open-login">Iniciar Sesión</button>
+          <button class="btn btn-primary" id="btn-open-register">Registrarse</button>
+        </div>
+        <!-- Autenticado -->
+        <div id="auth-actions-user" class="auth-actions hidden">
+          <div class="user-chip" id="user-chip">
+            <div class="user-avatar" id="user-avatar-nav">?</div>
+            <span class="user-name" id="user-name-nav">Estudiante</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="user-dropdown" id="user-dropdown">
+            <div class="dropdown-info">
+              <span id="dropdown-name">Luis David</span>
+              <small id="dropdown-carne">1890-20-11489</small>
+            </div>
+            <hr class="dropdown-divider"/>
+            <button class="dropdown-item danger" id="btn-logout">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Cerrar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Universidad Mariano Gálvez · Facultad de Ingeniería
+      </div>
+      <h1 class="hero-title">
+        Aprende a tu ritmo<br/>
+        <span class="gradient-text">sin límites.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Explora el catálogo de videos educativos, interactúa con el contenido y lleva tu conocimiento al siguiente nivel.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-lg" id="btn-hero-explore">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Explorar Catálogo
+        </button>
+        <button class="btn btn-ghost btn-lg" id="btn-hero-register">
+          Crear cuenta gratis
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-number" id="stat-videos">–</span><span class="stat-label">Videos</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-number" id="stat-categories">–</span><span class="stat-label">Categorías</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Gratuito</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATALOG SECTION ========== -->
+  <section class="catalog-section" id="catalog">
+    <div class="catalog-container">
+
+      <!-- Header del catálogo -->
+      <div class="catalog-header">
+        <h2 class="catalog-title">Catálogo de Videos</h2>
+        <p class="catalog-subtitle">Descubre y aprende con nuestros recursos multimedia</p>
+      </div>
+
+      <!-- Filtros de categoría -->
+      <div class="category-filters" id="category-filters">
+        <button class="category-chip active" data-category="all" id="filter-all">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Todos
+        </button>
+        <div class="category-chips-container" id="category-chips-container">
+          <!-- Generado dinámicamente por JS -->
+          <div class="skeleton-chip"></div>
+          <div class="skeleton-chip"></div>
+          <div class="skeleton-chip"></div>
+        </div>
+      </div>
+
+      <!-- Search bar visible en catálogo -->
+      <div class="catalog-search" id="catalog-search-container">
+        <div class="catalog-search-wrapper">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="catalog-search-input" class="catalog-search-input" placeholder="Buscar por título..." autocomplete="off" />
+          <button class="search-clear-btn hidden" id="search-clear-btn">✕</button>
+        </div>
+        <div class="results-count" id="results-count"></div>
+      </div>
+
+      <!-- Grid de Videos -->
+      <div class="videos-grid" id="videos-grid">
+        <!-- Skeletons de carga -->
+        <div class="video-card-skeleton"></div>
+        <div class="video-card-skeleton"></div>
+        <div class="video-card-skeleton"></div>
+        <div class="video-card-skeleton"></div>
+        <div class="video-card-skeleton"></div>
+        <div class="video-card-skeleton"></div>
+      </div>
+
+      <!-- Estado vacío -->
+      <div class="empty-state hidden" id="empty-state">
+        <div class="empty-icon">🎬</div>
+        <h3>No se encontraron videos</h3>
+        <p>Intenta con otra búsqueda o categoría</p>
+        <button class="btn btn-ghost" id="btn-reset-filters">Ver todos los videos</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== MODAL: AUTH ========== -->
+  <div class="modal-overlay hidden" id="auth-modal-overlay">
+    <div class="modal auth-modal" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+      <button class="modal-close" id="btn-close-auth-modal" aria-label="Cerrar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Tabs -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login">
+          Iniciar Sesión
+        </button>
+        <button class="auth-tab" id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register">
+          Registrarse
+        </button>
+        <div class="tab-indicator" id="tab-indicator"></div>
+      </div>
+
+      <!-- Panel Login -->
+      <div class="auth-panel" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+        <div class="auth-header">
+          <h2 id="auth-modal-title" class="auth-modal-title">Bienvenido de regreso</h2>
+          <p class="auth-modal-subtitle">Ingresa con tu carné o correo electrónico</p>
+        </div>
+        <form id="form-login" novalidate>
+          <div class="form-group">
+            <label for="login-usuario" class="form-label">Carné o Correo</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="login-usuario" name="usuario" class="form-input" placeholder="1890-20-11489 o usuario@correo.com" autocomplete="username" required />
+            </div>
+            <span class="field-error hidden" id="login-usuario-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="login-password" class="form-label">Contraseña (PIN)</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="login-password" name="password" class="form-input" placeholder="PIN numérico" autocomplete="current-password" required />
+              <button type="button" class="toggle-password" id="toggle-login-pwd" aria-label="Mostrar contraseña">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-error hidden" id="login-password-error"></span>
+          </div>
+          <div class="form-error-box hidden" id="login-form-error"></div>
+          <button type="submit" class="btn btn-primary btn-full" id="btn-login-submit">
+            <span class="btn-text">Iniciar Sesión</span>
+            <span class="btn-spinner hidden"></span>
+          </button>
+        </form>
+        <p class="auth-switch">¿No tienes cuenta? <button class="link-btn" id="switch-to-register">Regístrate aquí</button></p>
+      </div>
+
+      <!-- Panel Register -->
+      <div class="auth-panel hidden" id="panel-register" role="tabpanel" aria-labelledby="tab-register">
+        <div class="auth-header">
+          <h2 class="auth-modal-title">Crear cuenta</h2>
+          <p class="auth-modal-subtitle">Únete a la plataforma educativa</p>
+        </div>
+        <form id="form-register" novalidate>
+          <div class="form-group">
+            <label for="reg-carne" class="form-label">Carné Universitario</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <input type="text" id="reg-carne" name="carne" class="form-input" placeholder="0000-00-00000" maxlength="13" autocomplete="off" required />
+            </div>
+            <span class="field-hint">Formato: 0000-00-00000 (e.g. 1890-20-11489)</span>
+            <span class="field-error hidden" id="reg-carne-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="reg-nombre" class="form-label">Nombre Completo</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="reg-nombre" name="estudiante" class="form-input" placeholder="Juan Pérez" autocomplete="name" required />
+            </div>
+            <span class="field-error hidden" id="reg-nombre-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="reg-correo" class="form-label">Correo Electrónico</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" id="reg-correo" name="correo" class="form-input" placeholder="usuario@dominio.com" autocomplete="email" required />
+            </div>
+            <span class="field-error hidden" id="reg-correo-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="reg-password" class="form-label">Contraseña (PIN Numérico)</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="reg-password" name="password" class="form-input" placeholder="Solo números (mín. 4 dígitos)" autocomplete="new-password" required />
+              <button type="button" class="toggle-password" id="toggle-reg-pwd" aria-label="Mostrar contraseña">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-hint">Debe ser estrictamente numérico (sin letras ni espacios)</span>
+            <span class="field-error hidden" id="reg-password-error"></span>
+          </div>
+          <div class="form-error-box hidden" id="register-form-error"></div>
+          <button type="submit" class="btn btn-primary btn-full" id="btn-register-submit">
+            <span class="btn-text">Crear Cuenta</span>
+            <span class="btn-spinner hidden"></span>
+          </button>
+        </form>
+        <p class="auth-switch">¿Ya tienes cuenta? <button class="link-btn" id="switch-to-login">Inicia sesión aquí</button></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== MODAL: REPRODUCTOR DE VIDEO ========== -->
+  <div class="modal-overlay hidden" id="video-modal-overlay">
+    <div class="modal video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+      <button class="modal-close" id="btn-close-video-modal" aria-label="Cerrar reproductor">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="video-modal-body">
+        <!-- Reproductor -->
+        <div class="video-player-section">
+          <div class="video-player-wrapper" id="video-player-wrapper">
+            <div class="video-loading-state" id="video-loading-state">
+              <div class="spinner-ring"></div>
+              <span>Cargando video...</span>
+            </div>
+            <iframe id="video-iframe" class="video-iframe hidden" allowfullscreen allow="autoplay; fullscreen; picture-in-picture" title="Video educativo"></iframe>
+            <video id="video-html5" class="video-html5 hidden" controls></video>
+          </div>
+
+          <!-- Info del video -->
+          <div class="video-info-section">
+            <div class="video-category-badge" id="video-category-badge">Categoría</div>
+            <h2 class="video-modal-title" id="video-modal-title">Cargando...</h2>
+            <p class="video-modal-description" id="video-modal-description"></p>
+            <div class="video-meta-row">
+              <span class="video-meta-item" id="video-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                –
+              </span>
+              <span class="video-meta-item" id="video-likes-count">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                –
+              </span>
+            </div>
+            <!-- Like Button -->
+            <div class="video-actions-row">
+              <button class="like-btn" id="like-btn" data-video-id="" data-liked="false">
+                <span class="like-icon">❤️</span>
+                <span class="like-text">Me gusta</span>
+                <span class="like-count" id="like-count-btn">0</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de Comentarios -->
+        <div class="comments-section" id="comments-section">
+          <h3 class="comments-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Comentarios
+          </h3>
+
+          <!-- Formulario de nuevo comentario -->
+          <div class="comment-form-wrapper" id="comment-form-wrapper">
+            <div class="comment-form guest-blocked hidden" id="comment-guest-block">
+              <div class="guest-lock-msg">
+                <span>🔒</span>
+                <p>Debes <button class="link-btn" id="btn-comment-login">iniciar sesión</button> para comentar</p>
+              </div>
+            </div>
+            <div class="comment-form auth-only hidden" id="comment-auth-form">
+              <div class="comment-form-avatar" id="comment-avatar-main">?</div>
+              <div class="comment-form-input-wrapper">
+                <textarea id="new-comment-text" class="comment-textarea" placeholder="Escribe un comentario..." rows="2" maxlength="500"></textarea>
+                <div class="comment-form-actions">
+                  <span class="char-count" id="comment-char-count">0/500</span>
+                  <button class="btn btn-primary btn-sm" id="btn-submit-comment">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    Publicar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lista de comentarios -->
+          <div class="comments-list" id="comments-list">
+            <div class="comments-loading" id="comments-loading">
+              <div class="spinner-ring small"></div>
+              <span>Cargando comentarios...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== TOAST NOTIFICATIONS ========== -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-text">Edu<span class="logo-accent">Vid</span></span>
+        <p>Plataforma Educativa · UMG · Facultad de Ingeniería</p>
+      </div>
+      <div class="footer-info">
+        <p>Desarrollo y Diseño Web · 1er Parcial · Ciclo VIII · 2026</p>
+        <p>Ing. Carlos Amílcar Tezo Palencia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/interaction.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
